@@ -1,6 +1,7 @@
 TASK 1 – VPN SETUP (FINAL SOP DOCUMENT)
 ________________________________________
 **Objective**
+
 To implement a secure VPN-based access system in AWS where internal resources are not publicly accessible and can only be accessed via a VPN tunnel.
 ________________________________________
 **Architecture Overview**
