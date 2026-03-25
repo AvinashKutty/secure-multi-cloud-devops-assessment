@@ -62,6 +62,7 @@ Instance Type: t2.micro
 Key Pair: select your key
 Network: VPC task2-vpc
 Security Group: sg-ec2
+
 User Data (paste your script below):
 ```bash
 #!/bin/bash
@@ -81,7 +82,7 @@ server.listen(3000);
 EOF
 
 cd /home/ubuntu
-node app.js & ```
+node app.js &  ```
 
 Click Create Launch Template
 
@@ -89,8 +90,10 @@ Click Create Launch Template
 
 **Step 7: Create Target Group**
 
+
 Go to EC2 → Target Groups → Create Target Group
 Configure:
+
 ```bash
 Name: task2-tg
 Target Type: Instances
@@ -113,6 +116,7 @@ Click Create
 
 Go to EC2 → Load Balancers → Create Load Balancer → Application Load Balancer
 Configure:
+
 ```bash
 Name: task2-alb
 Scheme: Internet-facing
