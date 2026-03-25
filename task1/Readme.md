@@ -54,14 +54,18 @@ SSH	22	My IP
 UDP	1194	0.0.0.0/0
 ________________________________________
 Step 7: Install OpenVPN
+```bash
 sudo apt update -y
 sudo apt install curl -y
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod +x openvpn-install.sh
 sudo ./openvpn-install.sh install
+```
 ________________________________________
 Step 8: Create VPN Client
+```bash
 sudo ./openvpn-install.sh client avinash
+```
 File generated:
 /home/ubuntu/client.ovpn
 ________________________________________
