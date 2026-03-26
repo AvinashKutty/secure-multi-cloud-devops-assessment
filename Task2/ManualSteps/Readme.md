@@ -1,10 +1,15 @@
-Task 2: Deploy Scalable Node.js Backend on AWS with ALB & Auto Scaling
-Objective
+**Task 2: Deploy Scalable Node.js Backend on AWS with ALB & Auto Scaling**
 
-```bashDeploy a highly available and scalable Node.js backend API on AWS using VPC, private/public subnets, ALB, Launch Template, and Auto Scaling Group (ASG). Ensure the app runs automatically on instance launch.```
+**Objective**
 
+```bash
+Deploy a highly available and scalable Node.js backend API on AWS using VPC, 
+private/public subnets, ALB, Launch Template, and Auto Scaling Group (ASG).
+Ensure the app runs automatically on instance launch.
+```
 
 **Step 1: Create VPC**
+
 Go to VPC → Create VPC
 Configure:
 Name: task2-vpc
@@ -63,7 +68,7 @@ Key Pair: select your key
 Network: VPC task2-vpc
 Security Group: sg-ec2
 
-User Data (paste your script below):
+**User Data**
 ```bash
 #!/bin/bash
 sleep 30
@@ -82,7 +87,8 @@ server.listen(3000);
 EOF
 
 cd /home/ubuntu
-node app.js &  ```
+node app.js &
+ ```
 
 Click Create Launch Template
 
@@ -107,7 +113,8 @@ Port: 3000
 Success codes: 200
 Interval: 30 sec
 Unhealthy threshold: 2
-Healthy threshold: 2```
+Healthy threshold: 2
+```
 
 Click Create
 
@@ -124,7 +131,8 @@ IP Type: IPv4
 Listeners: HTTP 80
 Availability Zones: Select public subnets
 Security Group: sg-alb
-Forward listener to Target Group: task2-tg```
+Forward listener to Target Group: task2-tg
+```
 
 Click Create
 
@@ -143,7 +151,8 @@ Min: 2, Max: 4
 Auto Scaling Policy:
 Type: Target Tracking
 Metric: CPU Utilization
-Target: 60%```
+Target: 60%
+```
 
 **Step 10: Test Setup**
 
