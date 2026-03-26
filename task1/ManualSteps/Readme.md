@@ -9,13 +9,13 @@ To implement a secure VPN-based access system in AWS where internal resources ar
 ---
 
 **Architecture Overview**
+```bash
 User Laptop
 ↓ (VPN Tunnel)
 OpenVPN Server (EC2 - Public Subnet)
 ↓
 Private EC2 (Private Subnet - No Public IP)
-
----
+```
 
 **PHASE 1: VPC & NETWORK SETUP**
 
