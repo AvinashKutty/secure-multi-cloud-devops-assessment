@@ -1,0 +1,26 @@
+Developer (You)
+     │
+     │ git push
+     ▼
+GitHub Repository (CI_CD Repo)
+     │
+     ▼
+GitHub Actions (CI/CD Pipeline)
+     │
+     ├── Step 1: Checkout Code
+     ├── Step 2: Install Dependencies (pip)
+     ├── Step 3: Run Tests (pytest)
+     ├── Step 4: Build Docker Image
+     ├── Step 5: Push to Docker Hub
+     │
+     ▼
+Docker Hub (Container Registry)
+     │
+     ▼
+EC2 Instance (Deployment Server)
+     │
+     ├── docker pull (latest image)
+     ├── docker stop old container
+     ├── docker run new container
+     ▼
+Application Running (Port 5000)
