@@ -114,15 +114,18 @@ GCP: http://localhost:8080 → Should say: Hello from GCP Service!
 
 **Option 1: Docker Hub**
 
-
+```bash
 docker login
 docker tag aws-service:1.0 yourhubusername/aws-service:1.0
 docker tag gcp-service:1.0 yourhubusername/gcp-service:1.0
 docker push yourhubusername/aws-service:1.0
 docker push yourhubusername/gcp-service:1.0
+```
 
 
 **Option 2: AWS ECR (if using AWS)**
+
+```bash
 
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
 aws ecr create-repository --repository-name aws-service
@@ -131,6 +134,7 @@ docker tag aws-service:1.0 <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/aws-
 docker tag gcp-service:1.0 <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/gcp-service:1.0
 docker push <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/aws-service:1.0
 docker push <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/gcp-service:1.0
+```
 
 **Step 6: Verify Images in Registry**
 Docker Hub: Check your repositories → images should appear.
