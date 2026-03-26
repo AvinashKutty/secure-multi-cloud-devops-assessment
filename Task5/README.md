@@ -1,4 +1,6 @@
-1️⃣ Folder Structure
+**Folder Structure**
+
+```bash
 ci-cd-demo/
 │
 ├── app.py # Python app (or index.js for Node.js)
@@ -9,12 +11,14 @@ ci-cd-demo/
 └── .github/
 └── workflows/
 └── ci-cd.yml # GitHub Actions workflow file
-2️⃣ Prerequisites
+```
+**Prerequisites**
 EC2 Instance (Ubuntu recommended)
 Security group allows port 5000 (or your app port)
 
 Install Docker:
 
+```bash
 sudo apt update
 sudo apt install docker.io -y
 sudo systemctl enable docker
@@ -29,7 +33,11 @@ DOCKER_PASSWORD → Docker Hub password
 EC2_HOST → Public IP of EC2
 EC2_USER → EC2 username (usually ubuntu)
 EC2_KEY → Base64-encoded private key (PEM) for SSH
-3️⃣ Application + Docker Setup
+
+```
+
+**Application + Docker Setup**
+```bash
 Python App (app.py):
 from flask import Flask
 app = Flask(**name**)
@@ -54,12 +62,15 @@ CMD ["python", "app.py"]
 Tests (tests/test_app.py):
 def test_example():
 assert 2 + 2 == 4
-4️⃣ GitHub Actions Workflow
+
+```
+
+**GitHub Actions Workflow**
 
 Create .github/workflows/ci-cd.yml:
 
 name: CI/CD Pipeline to EC2
-
+```bash
 on:
 push:
 branches: - main
@@ -111,29 +122,36 @@ uses: actions/checkout@v3
             docker stop ci-cd-demo || true
             docker rm ci-cd-demo || true
             docker run -d --name ci-cd-demo -p 5000:5000 $IMAGE_NAME:$IMAGE_TAG
+```
 
-5️⃣ Steps to Encode EC2 Key for GitHub Secrets
+**Steps to Encode EC2 Key for GitHub Secrets**
 Encode PEM file in base64:
 base64 -w0 mykey.pem
 Copy the output and paste into GitHub Secrets as EC2_KEY.
-6️⃣ Trigger Pipeline
+Trigger Pipeline
 Push code to main branch:
+```bash
 git add .
 git commit -m "Add CI/CD pipeline"
 git push
+```
 
 GitHub Actions will automatically:
 
+```bash
 Build → Test → Dockerize → Push Docker Hub → Deploy on EC2
+```
 
-7️⃣ Verify Deployment
+**Verify Deployment**
 Go to EC2 instance:
+```bash
 docker ps
 Check if container is running.
 Open browser → http://<EC2_PUBLIC_IP>:5000
 You should see: Hello, CI/CD World!
+```
 
-✅ Outcome:
+**Outcome**
 
 Every push automatically builds, tests, pushes Docker image to Docker Hub, and deploys it to EC2.
 Fully automated CI/CD pipeline with zero manual intervention.
